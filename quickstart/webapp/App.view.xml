@@ -1,0 +1,12 @@
+<!-- the presentation logic is now defined declaratively in an XML view -->
+<mvc:View controllerName="Quickstart.App" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <!-- The new controls in the view are an App and a Page. They define a Web app with a header bar and a title. -->
+    <App>
+        <Page title="My App">
+            <!-- The button now also defines a type and a class attribute. This improves the layout of our button and makes it stand out more. -->
+            <Button text="Steady..." press=".onPress" type="Emphasized" class="sapUiSmallMargin"/>
+        </Page>
+    </App>
+</mvc:View>
