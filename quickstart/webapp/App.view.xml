@@ -1,12 +1,48 @@
 <!-- the presentation logic is now defined declaratively in an XML view -->
 <mvc:View controllerName="Quickstart.App" displayBlock="true"
     xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc">
-    <!-- The new controls in the view are an App and a Page. They define a Web app with a header bar and a title. -->
-    <App>
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt">
+    <!-- we assign an ID so that the controller can easily identify it -->
+    <App id="app">
         <Page title="My App">
-            <!-- The button now also defines a type and a class attribute. This improves the layout of our button and makes it stand out more. -->
-            <Button text="Steady..." press=".onPress" type="Emphasized" class="sapUiSmallMargin"/>
+            <!-- the button now receives an icon and triggers our navigation to page two -->
+            <Button icon="sap-icon://sap-ui5" text="Go!" press=".onPress" type="Emphasized" class="sapUiSmallMargin"/>
         </Page>
+        <!-- the second Page control: it is defined with the intro ID and a new title, it contains several new UI controls like a BlockLayout, an Icon, and a Panel -->
+        <Page id="intro" title="Create Enterprise-Ready Web Apps with Ease">
+            <l:BlockLayout background="Light">
+                <l:BlockLayoutRow>
+                    <l:BlockLayoutCell>
+                        <core:Icon color="#1873B4" src="sap-icon://sap-ui5" size="20rem" class="sapUiMediumMarginBottom" width="100%"/>
+                        <Title level="H1" titleStyle="H1" text="This is UI5!" width="100%" textAlign="Center"/>
+                    </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+                <l:BlockLayoutRow>
+                    <l:BlockLayoutCell>
+                        <FlexBox items="{/features}" justifyContent="Center" wrap="Wrap" class="sapUiSmallMarginBottom">
+                            <!-- data binding: the InfoLabel tag is a template that is repeated as many times as we have entries in our model -->
+                            <tnt:InfoLabel text="{}" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+                        </FlexBox>
+                    </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+
+                <l:BlockLayoutRow>
+                    <l:BlockLayoutCell>
+                        <!-- we make the Panel interactive by attaching an onChange event to the switch defined there, SAPUI5 comes with a large set of feature-rich controls that you can combine as you need -->
+                        <Panel headerText="Are you ready?" expandable="true">
+                            <Switch change=".onChange" customTextOn="yes" customTextOff="no"/>
+                            <l:HorizontalLayout id="ready" visible="false" class="sapUiSmallMargin">
+                                <Text text="Ok, let's get you started!" class="sapUiTinyMarginEnd"/>
+                                <Link text="Learn more" href="https://openui5.hana.ondemand.com/"/>
+                            </l:HorizontalLayout>
+                        </Panel>
+                    </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+            </l:BlockLayout>
+        </Page>
+
     </App>
 </mvc:View>
