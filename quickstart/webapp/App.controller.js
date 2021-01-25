@@ -1,4 +1,4 @@
-// we outsource the controller logic to an app controller. The .onPress event now references a function in the controller.
+// we outsource the controller logic to an app controller
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
@@ -37,5 +37,3 @@ sap.ui.define([
     });
 
 });
-
-// when the button is pressed, we now display a "Hello App" message
