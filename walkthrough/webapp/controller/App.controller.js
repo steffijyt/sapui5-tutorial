@@ -1,7 +1,6 @@
 // in SAPUI5, resources are often referred to as modules
 // the required modules are enabled to be loaded asynchronously
-// we extend the array of required modules with the fully qualified path to sap.m.MessageToast
-// once both modules, Controller and MessageToast, are loaded, the callback function is called and we can make use of both objects by accessing the parameters passed on to the function
+// once the modules are loaded, the callback function is called and we can make use of the objects by accessing the parameters passed on to the function
 // this Asynchronous Module Definition(AMD) syntax allows to clearly separate the module loading from the code execution and greatly improves the performance of the application
 // the browser can decide when and how the resources are loaded prior to code execution
 // use sap.ui.define for controllers and all other JavaScript modules to define a global namespace, with the namespace, the object can be addressed throughout the application
