@@ -9,7 +9,8 @@
     <!-- the XML tags are mapped to controls and the attributes are mapped to the properties of the control -->
     <!-- the button triggers the .onShowHello event handler function when being pressed -->
     <!-- we also have to specify the name of the controller that is connected to the view and holds the .onShowHello function by setting the controllerName attribute of the view -->
-    <Button text="Say Hello" press=".onShowHello"/>
+    <!-- in the XML view, we use data binding to connect the button text to the showHelloButtonText property in the i18n model, a resource bundle is a flat structure, therefore the preceding slash (/) can be omitted for the path -->
+    <Button text="{i18n>showHelloButtonText}" press=".onShowHello"/>
     <!-- we add an sap.m.Input control to the view, with this, the user can enter a recipient for the greetings -->
     <!-- we bind its value to a SAPUI5 model by using the declarative binding syntax for XML views -->
     <!-- the curly brackets {…} indicate that data is taken from the value of the recipient's object name property, this is called "data binding" -->
