@@ -10,4 +10,9 @@
     <!-- the button triggers the .onShowHello event handler function when being pressed -->
     <!-- we also have to specify the name of the controller that is connected to the view and holds the .onShowHello function by setting the controllerName attribute of the view -->
     <Button text="Say Hello" press=".onShowHello"/>
+    <!-- we add an sap.m.Input control to the view, with this, the user can enter a recipient for the greetings -->
+    <!-- we bind its value to a SAPUI5 model by using the declarative binding syntax for XML views -->
+    <!-- the curly brackets {…} indicate that data is taken from the value of the recipient's object name property, this is called "data binding" -->
+    <!-- /recipient/name declares the path in the model -->
+    <Input value="{/recipient/name}" description="Hello {/recipient/name}" valueLiveUpdate="true" width="60%"/>
 </mvc:View>
