@@ -1,0 +1,5 @@
+<mvc:View xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <!-- the XML tags are mapped to controls and the attributes are mapped to the properties of the control -->
+    <Text text="Hello World"/>
+</mvc:View>
