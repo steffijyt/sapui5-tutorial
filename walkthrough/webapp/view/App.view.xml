@@ -1,5 +1,13 @@
-<mvc:View xmlns="sap.m"
+<!-- the root node of the XML structure is the view -->
+<!-- we reference the default namespace sap.m where the majority of our UI assets are located, we define an additional sap.ui.core.mvc namespace with alias mvc, where the SAPUI5 views and all other Model-View-Controller (MVC) assets are located -->
+<!-- we add a reference to the controller -->
+<!-- a view does not necessarily need an explicitly assigned controller, you do not have to create a controller if the view is just displaying information and no additional functionality is required -->
+<!-- if a controller is specified, it is instantiated after the view is loaded -->
+<mvc:View controllerName="sap.ui.demo.walkthrough.controller.App"
+    xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc">
     <!-- the XML tags are mapped to controls and the attributes are mapped to the properties of the control -->
-    <Text text="Hello World"/>
+    <!-- the button triggers the .onShowHello event handler function when being pressed -->
+    <!-- we also have to specify the name of the controller that is connected to the view and holds the .onShowHello function by setting the controllerName attribute of the view -->
+    <Button text="Say Hello" press=".onShowHello"/>
 </mvc:View>
