@@ -14,7 +14,6 @@
     <!-- in this step, we load the SAPUI5 framework from our local webserver and initialize the core modules with the following configuration options -->
     <!-- src: tells the browser where to find the SAPUI5 core library – it initializes the SAPUI5 runtime and loads additional resources, such as the libraries specified in the data-sap-ui-libs attribute -->
     <!-- the SAPUI5 controls support different themes, we choose sap_belize as our default theme -->
-    <!-- we specify the required UI library sap.m containing the UI controls we need for this tutorial -->
     <!-- to make use of the most recent functionality of SAPUI5 we define the compatibility version as edge -->
 
     <!-- simple binding: contains only a binding pattern -->
@@ -25,11 +24,15 @@
     <!-- by setting the "edge" compatibility mode, the complex binding syntax is automatically enabled, the edge mode automatically enables compatibility features that otherwise would have to be enabled manually -->
 
     <!-- we configure the process of “bootstrapping” to run asynchronously, this means that the SAPUI5 resources can be loaded simultaneously in the background for performance reasons -->
-    <!-- we define the module to be loaded initially in a declarative way, with this, we avoid directly executable JavaScript code in the HTML file, this makes your app more secure, we will create the script that this references to further down in this step -->
     <!-- we tell SAPUI5 core that resources in the sap.ui.demo.walkthrough namespace are located in the same folder as index.html, this is, for example, necessary for apps that run in the SAP Fiori launchpad -->
+
+    <!-- in the bootstrapping script of our index.html, we enable the ComponentSupport module and remove the sap.m library -->
+    <!-- then, we declare our component in the body via a div tag -->
+    <!-- this will instantiate the component when the onInit event is executed -->
+    <!-- we will no longer need our index.js from now on, because the descriptor takes care of everything -->
     <script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_belize" data-sap-ui-libs="sap.m" data-sap-ui-compatVersion="edge"
-        data-sap-ui-async="true" data-sap-ui-onInit="module:sap/ui/demo/walkthrough/index" data-sap-ui-resourceroots='{
+        data-sap-ui-theme="sap_belize" data-sap-ui-compatVersion="edge" data-sap-ui-async="true"
+        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport" data-sap-ui-resourceroots='{
 			"sap.ui.demo.walkthrough": "./"
 		}'>
 
@@ -37,8 +40,11 @@
 </head>
 <!-- the body part describes the layout of the page -->
 <!-- the class sapUiBody adds additional theme-dependent styles for displaying SAPUI5 apps -->
+<!-- now we declare our component in the body of our index.html -->
 
 <body class="sapUiBody" id="content">
+    <div data-sap-ui-component data-name="sap.ui.demo.walkthrough" data-id="container"
+        data-settings='{"id" : "walkthrough"}'></div>
 </body>
 
 </html>
