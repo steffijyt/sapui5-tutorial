@@ -11,7 +11,7 @@ sap.ui.define([
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
         // the Component.js file consists of two parts now:
-        // 1. the new metadata section and
+        // 1. the metadata section and
         // 2. the init function that is called when the component is initialized
         // in the component's metadata section, we now replace the rootView property with the property key manifest and the value json
         // this defines a reference to the descriptor that will be loaded and parsed automatically when the component is instantiated
@@ -22,7 +22,6 @@ sap.ui.define([
         },
         // the init function of the component is automatically invoked by SAPUI5 when the component is instantiated
         // our component inherits from the base class sap.ui.core.UIComponent and it is obligatory to make the super call to the init function of the base class in the overridden init method
-        // in the init function we instantiate our data model and the i18n model like we did before in the app controller
         // be aware that the models are directly set on the component and not on the root view of the component
         // however, as nested controls automatically inherit the models from their parent controls, the models will be available on the view as well
         init: function () {

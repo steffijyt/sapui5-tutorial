@@ -30,6 +30,7 @@
     <!-- then, we declare our component in the body via a div tag -->
     <!-- this will instantiate the component when the onInit event is executed -->
     <!-- we will no longer need our index.js from now on, because the descriptor takes care of everything -->
+    <!-- the module sap/ui/core/ComponentSupport provides functionality which is used to find declared Components in the HTML page and to create the Component instances which will be put into a sap.ui.core.ComponentContainer -->
     <script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
         data-sap-ui-theme="sap_belize" data-sap-ui-compatVersion="edge" data-sap-ui-async="true"
         data-sap-ui-oninit="module:sap/ui/core/ComponentSupport" data-sap-ui-resourceroots='{
