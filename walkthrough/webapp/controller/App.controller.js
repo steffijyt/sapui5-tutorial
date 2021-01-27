@@ -7,42 +7,15 @@
 // use sap.ui.require for asynchronously loading dependencies but without declaring a namespace, for example code that just needs to be executed, but does not need to be called from other code
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
+    "sap/m/MessageToast"
     // use the name of the artifact to load for naming the function parameters (without namespace)
-], function (Controller, MessageToast, JSONModel, ResourceModel) {
+], function (Controller, MessageToast) {
     // literal expression was introduced by ECMAScript 5
     // it tells the browser to execute the code in a so called “strict mode”, the strict mode helps to detect potential coding issues at an early state at development time
     // for example, it makes sure that variables are declared before they are used, it helps to prevent common JavaScript pitfalls and it’s therefore a good practice to use strict mode
     "use strict";
     // we define the app controller in its own file by extending the Controller object of the SAPUI5 core
     return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
-        // we add an init function to the controller, onInit is one of SAPUI5’s lifecycle methods that is invoked by the framework when the controller is created, similar to a constructor function of a control
-        onInit: function () {
-            // set data model on view
-            // inside the function we instantiate a JSON model, the data for the model only contains a single property for the “recipient”, and inside this it also contains one additional property for the name
-            // to be able to use this model from within the XML view, we call the setModel function on the view and pass on our newly created model, the model is now set on the view
-            var oData = {
-                recipient: {
-                    name: "World"
-                }
-            };
-            var oModel = new JSONModel(oData);
-            this.getView().setModel(oModel);
-            // set i18n model on view
-            // in the onInit function we instantiate the ResourceModel that points to the new message bundle file where our texts are now located(i18n.properties file)
-            // the bundle name sap.ui.demo.walkthrough.i18n.i18n consists of the application namespace sap.ui.demo.walkthrough (the application root as defined in the index.html), the folder name i18n and finally the file name i18n without extension
-            // the SAPUI5 runtime calculates the correct path to the resource; in this case the path to our i18n.properties file
-            // next, the model instance is set on the view as a named model with the key i18n
-            // you use named models when you need to have several models available in parallel
-            var i18nModel = new ResourceModel({
-                bundleName: "sap.ui.demo.walkthrough.i18n.i18n",
-                supportedLocales: [""],
-                fallbackLocale: ""
-            });
-            this.getView().setModel(i18nModel, "i18n");
-        },
         // onShowHello event handler function
         onShowHello: function () {
             // read msg from i18n model
