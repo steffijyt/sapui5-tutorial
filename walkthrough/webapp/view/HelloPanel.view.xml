@@ -11,6 +11,13 @@
     <!-- tablets will get a smaller margin and phones in portrait mode will not get a margin to save space on these small screens -->
     <Panel headerText="{i18n>helloPanelTitle}" class="sapUiResponsiveMargin" width="auto">
         <content>
+            <!-- we add a new button to the view to open the dialog -->
+            <!-- it simply calls an event handler function in the controller of the panel’s content view -->
+            <!-- we will need the new id="helloDialogButton" in Step 29: Integration Test with OPA -->
+            <!-- it is a good practice to set a unique ID like helloWorldButton to key controls of your app so that can be identified easily -->
+            <!-- if the attribute `id` is not specified, the OpenUI5 runtime generates unique but changing ID like `__button23` for the control -->
+            <!-- inspect the DOM elements of your app in the browser to see the difference -->
+            <Button id="helloDialogButton" text="{i18n>openDialogButtonText}" press=".onOpenDialog" class="sapUiSmallMarginEnd"/>
             <!-- the button triggers the .onShowHello event handler function when being pressed -->
             <!-- we also have to specify the name of the controller that is connected to the view and holds the .onShowHello function by setting the controllerName attribute of the view -->
             <!-- in the XML view, we use data binding to connect the button text to the showHelloButtonText property in the i18n model, a resource bundle is a flat structure, therefore the preceding slash (/) can be omitted for the path -->
