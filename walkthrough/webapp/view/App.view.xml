@@ -19,7 +19,6 @@
         <!-- this class has no styling rules set and is used in the definition of the CSS rules to define CSS selectors that are only valid for this app -->
         <App class="myAppDemoWT">
             <pages>
-                <!-- we put both the input field and the button inside a containing control called sap.m.Page -->
                 <!-- the page provides an aggregation to 0..N other controls called content -->
                 <!-- it also displays the title attribute in a header section on top of the content -->
                 <Page title="{i18n>homePageTitle}">
