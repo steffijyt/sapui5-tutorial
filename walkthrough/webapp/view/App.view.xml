@@ -15,7 +15,9 @@
         <!-- the page itself is placed into the pages aggregation of another control called sap.m.App which does the following important things for us: -->
         <!-- 1. it writes a bunch of properties into the header of the index.html that are necessary for proper display on mobile devices -->
         <!-- 2. it offers functionality to navigate between pages with animations -->
-        <App>
+        <!-- the app control is configured with our custom namespace class myAppDemoWT -->
+        <!-- this class has no styling rules set and is used in the definition of the CSS rules to define CSS selectors that are only valid for this app -->
+        <App class="myAppDemoWT">
             <pages>
                 <!-- we put both the input field and the button inside a containing control called sap.m.Page -->
                 <!-- the page provides an aggregation to 0..N other controls called content -->
@@ -33,18 +35,18 @@
                                 <!-- the button triggers the .onShowHello event handler function when being pressed -->
                                 <!-- we also have to specify the name of the controller that is connected to the view and holds the .onShowHello function by setting the controllerName attribute of the view -->
                                 <!-- in the XML view, we use data binding to connect the button text to the showHelloButtonText property in the i18n model, a resource bundle is a flat structure, therefore the preceding slash (/) can be omitted for the path -->
-                                <!-- margins can be added to all kinds of controls and are available in many different options -->
-                                <!-- we can even add space between the button and the input field by adding class sapUiSmallMarginEnd to the button -->
-                                <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="sapUiSmallMarginEnd"/>
+                                <!-- we add our custom CSS class to the button to precisely define the space between the button and the input field -->
+                                <Button text="{i18n>showHelloButtonText}" press=".onShowHello" class="myCustomButton"/>
                                 <!-- we add an sap.m.Input control to the view, with this, the user can enter a recipient for the greetings -->
                                 <!-- we bind its value to a SAPUI5 model by using the declarative binding syntax for XML views -->
                                 <!-- the curly brackets {…} indicate that data is taken from the value of the recipient's object name property, this is called "data binding" -->
                                 <!-- /recipient/name declares the path in the model -->
                                 <Input value="{/recipient/name}" valueLiveUpdate="true" width="60%"/>
-                                <!-- to format the output text individually, we remove the description from the input field and add a new Text control with the same value -->
-                                <!-- here we also use a small margin to align it with the other content -->
-                                <!-- similarly, we could add the standard padding classes to layout the inner parts of container controls such as our panel, but as it already brings a padding by default, this is not needed here -->
-                                <Text text="Hello {/recipient/name}" class="sapUiSmallMargin"/>
+                                <!-- to highlight the output text, we use a FormattedText control which can be styled individually, either by using custom CSS or with HTML code -->
+                                <!-- we add our custom CSS class (myCustomText) and add a theme-dependent CSS class to set the highlight color that is defined in the theme -->
+                                <!-- the actual color now depends on the selected theme which ensures that the color always fits to the theme and is semantically clear -->
+                                <!-- do not specify colors in custom CSS but use the standard theme-dependent classes instead -->
+                                <FormattedText htmlText="Hello {/recipient/name}" class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
                             </content>
                         </Panel>
                     </content>

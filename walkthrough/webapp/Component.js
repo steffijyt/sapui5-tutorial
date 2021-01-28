@@ -69,3 +69,7 @@ sap.ui.define([
 // rootView: if you specify this parameter, the component will automatically instantiate the view and use it as the root for this component
 // dependencies: here we declare the UI libraries used in the application
 // models: in this section of the descriptor we can define models that will be automatically instantiated by SAPUI5 when the app starts, here we can now define the local resource bundle, we define the name of the model "i18n" as key and specify the bundle file by namespace, as in the previous steps, the file with our translated texts is stored in the i18n folder and named i18n.properties, we simply prefix the path to the file with the namespace of our app
+
+// in the resources section of the sap.ui5 namespace, additional resources for the app can be loaded
+// we load the CSS styles by defining a URI relative to the component
+// SAPUI5 then adds this file to the header of the HTML page as a <link> tag, just like in plain Web pages, and the browser loads it automatically
