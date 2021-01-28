@@ -1,4 +1,3 @@
-// to have a reusable asset, the method onShowHello is also moved from the app controller to the HelloPanel controller
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
