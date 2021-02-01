@@ -40,7 +40,8 @@ sap.ui.define([
             if (!this.pDialog) {
                 this.pDialog = Fragment.load({
                     id: oView.getId(),
-                    name: "sap.ui.demo.walkthrough.view.HelloDialog"
+                    name: "sap.ui.demo.walkthrough.view.HelloDialog",
+                    controller: this
                 }).then(function (oDialog) {
                     // connect dialog to the root view of this component (models, lifecycle)
                     oView.addDependent(oDialog);
@@ -50,6 +51,18 @@ sap.ui.define([
             this.pDialog.then(function (oDialog) {
                 oDialog.open();
             });
+        },
+
+        // as previously described, fragments are pure UI reuse artifacts and do not have a controller
+        // however, you can pass a controller object to the Fragment.load API
+        // for our dialog we reference the HelloPanel controller
+        // however, the third parameter does not necessarily have to be a controller but can be any object
+        // just don't forget the this keyword
+        // the event handler function is put into the same controller file and it closes the dialog by accessing the internal helper function that returns the dialog
+        onCloseDialog: function () {
+            // note: We don't need to chain to the pDialog promise, since this event-handler
+            // is only called from within the loaded dialog itself.
+            this.byId("helloDialog").close();
         }
     });
 });
