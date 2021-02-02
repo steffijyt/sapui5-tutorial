@@ -18,6 +18,12 @@
 <core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <Dialog id="helloDialog" title="Hello {/recipient/name}">
+        <!-- in the dialog fragment, we add an icon control to the content aggregation of the dialog -->
+        <!-- we also define the size of the icon and set a medium margin on it -->
+        <!-- always use icon fonts rather than images wherever possible, as they are scalable without quality loss (vector graphics) and do not need to be loaded separately -->
+        <content>
+            <core:Icon src="sap-icon://hello-world" size="8rem" class="sapUiMediumMargin"/>
+        </content>
         <!-- in the fragment definition, we add a button to the beginButton aggregation of the dialog -->
         <!-- the press handler is referring to an event handler called .onCloseDialog, and since we passed in the reference to the HelloPanel controller, the method will be invoked there when the button is pressed -->
         <!-- the dialog has an aggregation named beginButton as well as endButton -->

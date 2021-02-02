@@ -17,7 +17,12 @@
             <!-- it is a good practice to set a unique ID like helloWorldButton to key controls of your app so that can be identified easily -->
             <!-- if the attribute `id` is not specified, the OpenUI5 runtime generates unique but changing ID like `__button23` for the control -->
             <!-- inspect the DOM elements of your app in the browser to see the difference -->
-            <Button id="helloDialogButton" text="{i18n>openDialogButtonText}" press=".onOpenDialog" class="sapUiSmallMarginEnd"/>
+            <!-- we add an icon to the button that opens the dialog -->
+            <!-- the sap-icon:// protocol is indicating that an icon from the icon font should be loaded -->
+            <!-- the identifier world is the readable name of the icon in the icon font -->
+            <!-- you can look up other icons using the Icon Explorer tool in the Demo Kit -->
+            <!-- to call any icon, use its name as listed in the Icon Explorer in sap-icon://<iconname> -->
+            <Button id="helloDialogButton" icon="sap-icon://world" text="{i18n>openDialogButtonText}" press=".onOpenDialog" class="sapUiSmallMarginEnd"/>
             <!-- the button triggers the .onShowHello event handler function when being pressed -->
             <!-- in the XML view, we use data binding to connect the button text to the showHelloButtonText property in the i18n model, a resource bundle is a flat structure, therefore the preceding slash (/) can be omitted for the path -->
             <!-- we add our custom CSS class to the button to precisely define the space between the button and the input field -->
