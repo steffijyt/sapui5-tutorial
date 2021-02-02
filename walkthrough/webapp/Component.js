@@ -11,13 +11,12 @@ sap.ui.define([
 ], function (UIComponent, JSONModel, HelloDialog) {
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
-        // the Component.js file consists of two parts now:
+        // the Component.js file consists of two parts:
         // 1. the metadata section and
         // 2. the init function that is called when the component is initialized
-        // in the component's metadata section, we now replace the rootView property with the property key manifest and the value json
+        // in the component's metadata section, we have the property key manifest and the value json
         // this defines a reference to the descriptor that will be loaded and parsed automatically when the component is instantiated
-        // we can now completely remove the lines of code containing the model instantiation for our resource bundle
-        // it is done automatically by SAPUI5 with the help of the configuration entries in the descriptor
+        // the model instantiation for our resource bundle is done automatically by SAPUI5 with the help of the configuration entries in the descriptor
         metadata: {
             manifest: "json"
         },
