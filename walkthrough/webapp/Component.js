@@ -7,7 +7,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
-], function (UIComponent, JSONModel) {
+    "./controller/HelloDialog"
+], function (UIComponent, JSONModel, HelloDialog) {
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
         // the Component.js file consists of two parts now:
@@ -35,6 +36,36 @@ sap.ui.define([
             };
             var oModel = new JSONModel(oData);
             this.setModel(oModel);
+
+            // set dialog
+            // the dialog instantiation is refactored to a new helper object which is stored in a private property of the component
+            // for instantiation of the helper object, we have to pass the view instance to which the dialog is added (see method call addDependent in the implementation of the helper object HelloDialog.js)
+            // we want to connect the reuse dialog to the lifecycle of the root view of the app, so we pass an instance of the root view on to the constructor
+            // it can be retrieved by calling the getRootControl method of the component
+            // as defined in parameter rootView in the manifest.json file, our root view is sap.ui.demo.walkthrough.view.App
+            // from the component, the root view can be retrieved at runtime by accessing the rootControl aggregation
+            this._helloDialog = new HelloDialog(this.getRootControl());
+        },
+
+        // up to this point we added the new property _helloDialog to the component and assigned an instance of the HelloDialog object to it
+        // we want to make sure that the memory allocated for this helper object is freed up when the component is destroyed
+        // otherwise our application may cause memory leaks
+        // to do so, we use the exit hook
+        // the SAPUI5 framework calls the function assigned to exit when destroying the component
+        // we call the destroy function of HelloDialog to clean up the helper class and end its lifecycle
+        // nevertheless, the instance itself would still exist in the browser memory
+        // therefore we delete our reference to the HelloDialog instance by calling delete this._helloDialog and the garbage collection of the browser can clean up its memory
+        // we don't have to destroy the instance of JSONModel that we created, because we assigned it to the component with the setModel function
+        // the SAPUI5 framework will destroy it together with the component
+        exit: function () {
+            this._helloDialog.destroy();
+            delete this._helloDialog;
+        },
+
+        // to be able to open the dialog from other controllers as well, we implement a reuse function openHelloDialog which calls the open method of our helper object
+        // by doing so, we also decouple the implementation details of the reuse dialog from the application coding
+        openHelloDialog: function () {
+            this._helloDialog.open();
         }
     });
 });

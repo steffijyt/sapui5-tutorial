@@ -22,6 +22,11 @@
                 <!-- the page provides an aggregation to 0..N other controls called content -->
                 <!-- it also displays the title attribute in a header section on top of the content -->
                 <Page title="{i18n>homePageTitle}">
+                    <!-- we add a button to the header area of the app view to show the reuse of the hello world dialog -->
+                    <!-- when pressing the button the dialog will be opened as with the button that we previously created in the panel -->
+                    <headerContent>
+                        <Button icon="sap-icon://hello-world" press=".onOpenDialog"/>
+                    </headerContent>
                     <content>
                         <!-- instead of putting the panel and its content directly into our App view, we will move it to a new separate HelloPanel view -->
                         <!-- we refer to this using an XMLView tag in the content aggregation of the page -->

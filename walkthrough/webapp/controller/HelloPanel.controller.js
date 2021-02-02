@@ -1,8 +1,7 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/ui/core/Fragment"
-], function (Controller, MessageToast, Fragment) {
+    "sap/m/MessageToast"
+], function (Controller, MessageToast) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.controller.HelloPanel", {
         // onShowHello event handler function
@@ -21,48 +20,11 @@ sap.ui.define([
             // show message
             MessageToast.show(sMsg);
         },
-        // if the dialog in the fragment does not exist yet, the fragment is instantiated by calling the Fragment.load API with the following arguments:
-        // 1. the ID of the HelloPanel view
-        // this parameter is used to prefix the IDs inside our fragment
-        // there, we have defined the ID helloDialog for the Dialog control, and we can access the dialog via the view by calling oView.byId("helloDialog")
-        // this makes sure that even if you instantiate the same fragment in other views in the same way, each dialog will have its unique ID that is concatenated from the view ID and the dialog ID
-        // using unique IDs is important, because duplicate IDs lead to errors in the framework
-        // 2. the name of the fragment
-        // we add the dialog as "dependent" on the view to be connected to the lifecycle of the view’s model
-        // a convenient side-effect is that the dialog will automatically be destroyed when the view is destroyed
-        // otherwise, we would have to destroy the dialog manually to free its resources
-        // always use the addDependent method to connect the dialog to the lifecycle management and data binding of the view, even though it is not added to its UI tree
-        // private functions and variables should always start with an underscore
+
+        // the onOpenDialog method now accesses its component by calling the helper method getOwnerComponent
+        // when calling the open method of the reuse object we pass in the current view to connect it to the dialog
         onOpenDialog: function () {
-            var oView = this.getView();
-
-            // create dialog lazily
-            if (!this.pDialog) {
-                this.pDialog = Fragment.load({
-                    id: oView.getId(),
-                    name: "sap.ui.demo.walkthrough.view.HelloDialog",
-                    controller: this
-                }).then(function (oDialog) {
-                    // connect dialog to the root view of this component (models, lifecycle)
-                    oView.addDependent(oDialog);
-                    return oDialog;
-                });
-            }
-            this.pDialog.then(function (oDialog) {
-                oDialog.open();
-            });
-        },
-
-        // as previously described, fragments are pure UI reuse artifacts and do not have a controller
-        // however, you can pass a controller object to the Fragment.load API
-        // for our dialog we reference the HelloPanel controller
-        // however, the third parameter does not necessarily have to be a controller but can be any object
-        // just don't forget the this keyword
-        // the event handler function is put into the same controller file and it closes the dialog by accessing the internal helper function that returns the dialog
-        onCloseDialog: function () {
-            // note: We don't need to chain to the pDialog promise, since this event-handler
-            // is only called from within the loaded dialog itself.
-            this.byId("helloDialog").close();
+            this.getOwnerComponent().openHelloDialog();
         }
     });
 });

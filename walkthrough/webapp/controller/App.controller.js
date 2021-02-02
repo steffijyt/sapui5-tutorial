@@ -15,5 +15,10 @@ sap.ui.define([
     "use strict";
     // we define the app controller in its own file by extending the Controller object of the SAPUI5 core
     return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
+        // we add the method onOpenDialog also to the app controller so that the dialog will open with a reference to the current view
+        // put all assets that are used across multiple controllers in separate modules
+        onOpenDialog: function () {
+            this.getOwnerComponent().openHelloDialog();
+        }
     });
 });
